@@ -1,1 +1,3 @@
-# fence-quote
+# Fence Quote
+
+This project provides a user-friendly fence cost calculator built with HTML, CSS, and JavaScript. It allows users to estimate the cost of a fence based on its length.
