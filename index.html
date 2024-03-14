@@ -12,49 +12,52 @@
     <body class="calculator-page">
         <h1 id="main-heading">Fence Quote</h1>
         <div class="calculator-container">
-            <div class="input">
-                <label for="length">Fence Coverage (in feet)</label>
-                <input type="number" id="length" min="8" value="8" required>
-            </div>
+            <form>
+                <div class="input">
+                    <label for="length">Fence Coverage (in feet)</label>
+                    <input type="number" id="length" min="8" value="8" required>
+                </div>
 
-            <div class="input">
-                <label for="post-dimension">Post Dimensions</label>
-                <select name="post-dimension" id="post-dimension">
-                    <option value="3.5">4x4</option>
-                    <option value="5.5">4x6</option>
-                </select>
-            </div>
+                <div class="input">
+                    <label for="post-dimension">Post Dimensions</label>
+                    <select name="post-dimension" id="post-dimension">
+                        <option value="3.5">4x4</option>
+                        <option value="5.5">4x6</option>
+                    </select>
+                </div>
 
-            <div class="input">
-                <label for="horizontal-board">2x4 horizonatal boards</label>
-                <select name="horizontal-board" id="horizontal-board">
-                    <option value="2">Top and Bottom</option>
-                    <option value="3">Top, Center, and Bottom</option>
-                </select>
-            </div>
+                <div class="input">
+                    <label for="horizontal-board">2x4 horizonatal boards</label>
+                    <select name="horizontal-board" id="horizontal-board">
+                        <option value="2">Top and Bottom</option>
+                        <option value="3">Top, Center, and Bottom</option>
+                    </select>
+                </div>
 
-            <div class="input">
-                <label for="fenceBoardCost">Fence Board Price $</label>
-                <input type="number" id="fenceBoardCost" min="0" value="5.12" required>
-            </div>
+                <div class="input">
+                    <label for="fenceBoardCost">Fence Board Price $</label>
+                    <input type="number" id="fenceBoardCost" min="0" step="1.00" value="5.12" required>
+                </div>
 
-            <div class="input">
-                <label for="postCost">Post Price $</label>
-                <input type="number" id="postCost" min="0" value="16.80" required>
-            </div>
+                <div class="input">
+                    <label for="postCost">Post Price $</label>
+                    <input type="number" id="postCost" min="0" step="1.00" value="16.80" required>
+                </div>
 
-            <div class="input">
-                <label for="hrCost">2x4 or 2x6 Price $</label>
-                <input type="number" id="hrCost" min="0" value="7.65" required>
-            </div>
+                <div class="input">
+                    <label for="hrCost">2x4 or 2x6 Price $</label>
+                    <input type="number" id="hrCost" min="0" step="1.00" value="7.65" required>
+                </div>
 
-            <div class="input">
-                <label for="concreteCost">Concrete Price $</label>
-                <input type="number" id="concreteCost" min="0" value="7.70" required>
-            </div>
+                <div class="input">
+                    <label for="concreteCost">Concrete Price $</label>
+                    <input type="number" id="concreteCost" min="0" step="1.00" value="7.70" required>
+                </div>
 
-            <button onclick="getQuote()">Get Quote</button>
+                <button type="button" onclick="getQuote()">Get Quote</button>
+                <button type="reset">Reset</button>
 
+            </form>
             <div class="result-container">
                 <h2>Results</h2>
                 <p class="result" id="NoFenceBoards"></p>
