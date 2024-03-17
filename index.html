@@ -10,66 +10,129 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body class="calculator-page">
-        <h1 id="main-heading">Fence Quote</h1>
-        <div class="calculator-container">
-            <form>
-                <div class="input">
-                    <label for="length">Fence Coverage (in feet)</label>
-                    <input type="number" id="length" min="8" value="8" required>
-                </div>
-
-                <div class="input">
-                    <label for="post-dimension">Post Dimensions</label>
-                    <select name="post-dimension" id="post-dimension">
-                        <option value="3.5">4x4</option>
-                        <option value="5.5">4x6</option>
-                    </select>
-                </div>
-
-                <div class="input">
-                    <label for="horizontal-board">2x4 horizonatal boards</label>
-                    <select name="horizontal-board" id="horizontal-board">
-                        <option value="2">Top and Bottom</option>
-                        <option value="3">Top, Center, and Bottom</option>
-                    </select>
-                </div>
-
-                <div class="input">
-                    <label for="fenceBoardCost">Fence Board Price $</label>
-                    <input type="number" id="fenceBoardCost" min="0" step="1.00" value="5.12" required>
-                </div>
-
-                <div class="input">
-                    <label for="postCost">Post Price $</label>
-                    <input type="number" id="postCost" min="0" step="1.00" value="16.80" required>
-                </div>
-
-                <div class="input">
-                    <label for="hrCost">2x4 or 2x6 Price $</label>
-                    <input type="number" id="hrCost" min="0" step="1.00" value="7.65" required>
-                </div>
-
-                <div class="input">
-                    <label for="concreteCost">Concrete Price $</label>
-                    <input type="number" id="concreteCost" min="0" step="1.00" value="7.70" required>
-                </div>
-
-                <button type="button" onclick="getQuote()">Get Quote</button>
-                <button type="reset">Reset</button>
-
-            </form>
-            <div class="result-container">
-                <h2>Results</h2>
-                <p class="result" id="NoFenceBoards"></p>
-                <p class="result" id="NoPosts"></p>
-                <p class="result" id="NoHrBoards"></p>
-                <p class="result" id="NoConcreteBags"></p>
-                <p class="result" id="NoDeckScrews"></p>
-                <p class="result" id="totalCost"></p>
-            </div>
-            
-        </div>
+        <nav>
+            <ul>
+                <li onclick="showCalculator('fence')"><a href="#fence-calculator" class="active">Fence</a></li>
+                <li onclick="showCalculator('shingle')"><a href="#shingle-calculator">Shingle</a></li>
+            </ul>
+        </nav>
         
+        <div class="fence-page" id="fence-calculator">
+            <h1 id="main-heading">Fence Quote</h1>
+            <div class="calculator-container">
+                <form>
+                    <div class="input">
+                        <label for="length">Fence Coverage (in feet)</label>
+                        <input type="number" id="length" min="8" value="8" required>
+                    </div>
+
+                    <div class="input">
+                        <label for="post-dimension">Post Dimensions</label>
+                        <select name="post-dimension" id="post-dimension">
+                            <option value="3.5">4x4</option>
+                            <option value="5.5">4x6</option>
+                        </select>
+                    </div>
+
+                    <div class="input">
+                        <label for="horizontal-board">2x4 horizonatal boards</label>
+                        <select name="horizontal-board" id="horizontal-board">
+                            <option value="2">Top and Bottom</option>
+                            <option value="3">Top, Center, and Bottom</option>
+                        </select>
+                    </div>
+
+                    <div class="input">
+                        <label for="fenceBoardCost">Fence Board Price $</label>
+                        <input type="number" id="fenceBoardCost" min="0" step="1.00" value="5.12" required>
+                    </div>
+
+                    <div class="input">
+                        <label for="postCost">Post Price $</label>
+                        <input type="number" id="postCost" min="0" step="1.00" value="16.80" required>
+                    </div>
+
+                    <div class="input">
+                        <label for="hrCost">2x4 or 2x6 Price $</label>
+                        <input type="number" id="hrCost" min="0" step="1.00" value="7.65" required>
+                    </div>
+
+                    <div class="input">
+                        <label for="concreteCost">Concrete Price $</label>
+                        <input type="number" id="concreteCost" min="0" step="1.00" value="7.70" required>
+                    </div>
+
+                    <button type="button" onclick="getFenceQuote()">Get Quote</button>
+                    <button type="reset" onclick="resetResult()">Reset</button>
+
+                </form>
+                <div class="result-container hidden" id="fence-result">
+                    <h2>Results</h2>
+                    <p class="result" id="NoFenceBoards"></p>
+                    <p class="result" id="NoPosts"></p>
+                    <p class="result" id="NoHrBoards"></p>
+                    <p class="result" id="NoConcreteBags"></p>
+                    <p class="result" id="NoDeckScrews"></p>
+                    <p class="result" id="totalFenceCost"></p>
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="shingle-page" id="shingle-calculator">
+            <h1 id="main-heading">Shingle Quote</h1>
+            <div class="calculator-container">
+                <form>
+                    
+                    <div class="input">
+                        <label for="roof-size">Roof Size (sq ft)</label>
+                        <input type="number" id="roof-size" min="0" value="1" required>
+                    </div>
+
+                    <div class="input">
+                        <label for="roof-edge">Roof Edge (lin. ft)</label>
+                        <input type="number" id="roof-edge" min="0" value="1" required>
+                    </div>
+
+                    <div class="input">
+                        <label for="roof-ridge">Roof Ridge (lin. ft)</label>
+                        <input type="number" id="roof-ridge" min="0" value="1" required>
+                    </div>
+
+                    <div class="input">
+                        <label for="underlaymemt">Underlayment</label>
+                        <select name="underlaymemt" id="underlaymemt">
+                            <option value="200">GAF Weather Watch (200 sq ft)</option>
+                            <option value="100">GAF Liberty (100 sq ft)</option>
+                        </select>
+                    </div>
+
+                    <div class="input">
+                        <label for="starter">Starter Kit</label>
+                        <select name="starter" id="starter">
+                            <option value="33">Quickstart Peel and Stick (33 lin. ft)</option>
+                            <option value="50">Weather Blocker Strip Shingles (50 lin. ft)</option>
+                        </select>
+                    </div>
+
+                    <button type="button" onclick="getShingleQuote()">Get Quote</button>
+                    <button type="reset" onclick="resetResult()">Reset</button>
+                </form>
+
+                <div class="result-container hidden" id="shingle-result">
+                    <h2>Results</h2>
+                    <p class="result" id="underlaymentRolls"></p>
+                    <p class="result" id="starterKit"></p>
+                    <p class="result" id="shingleBundles"></p>
+                    <p class="result" id="ridgeBundles"></p>
+                    <p class="result" id="totalShingleCost"></p>
+                </div>
+            </div>
+        </div>
+
+
+
+
         <script src="script.js" async defer></script>
     </body>
 </html>

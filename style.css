@@ -1,8 +1,14 @@
-.calculator-page {
+.fence-page, .shingle-page {
     font-family: sans-serif;
     font-size: 1.1rem;
     margin: 0;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.calculator-page{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -99,8 +105,50 @@ h2{
 }
 
 /* Style the total cost result with a different color */
-#totalCost {
+#totalFenceCost, #totalShingleCost {
     font-weight: bold;
     color: #388e3c; /* Green */
     font-size: 1.2rem;
 }
+
+.hidden{
+    display: none;
+}
+
+/* Navigation Bar Styles */
+nav {
+    margin-top: 20px;
+    display: flex;
+    width: fit-content;
+  }
+  
+  nav ul {
+    list-style: none; /* Remove default bullet points */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    display: flex; /* Arrange links horizontally */
+  }
+  
+  nav li {
+    background-color: #f0f0f0; /* Light gray background */
+    padding: 10px 20px; /* Add some padding for spacing */
+    margin-right: 20px; /* Add spacing between links */
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  nav a {
+    color: black; /* Text color */
+    text-decoration: none; /* Remove underline */
+    font-weight: bold; /* Bold text */
+    font-size: 1.1rem; /* Adjust font size */
+  }
+  
+  nav li:hover {
+    background-color: rgb(224, 221, 221)
+  }
+  
+  .active { /* Style for active link */
+    color: #388e3c;
+  }
+  
