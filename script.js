@@ -1,63 +1,59 @@
+const postDimensionSelect = document.getElementById('post-dimension');
+const postCostInput = document.getElementById('postCost');
+
+// Define an object to store post costs based on dimensions (value)
+const postCosts = {
+  '3.5': 16.80, // Cost for 4x4 post
+  '5.5': 25.98, // Cost for 4x6 post
+};
+
+// Update post cost on selection change
+postDimensionSelect.addEventListener('change', () => {
+  const selectedDimension = postDimensionSelect.value;
+  const cost = postCosts[selectedDimension]; // Access cost based on selected value
+  postCostInput.value = cost.toFixed(2); // Set the input value with formatted price (2 decimal places)
+});
+
+// Set the initial cost based on the default selected value
+postCostInput.value = postCosts[postDimensionSelect.value].toFixed(2);
+
+
 const getFenceQuote = () => {
     const result = document.getElementById('fence-result');
     result.classList.remove('hidden');
 
-    const lengthInput = document.getElementById('length');
-    const postDimensions = document.getElementById('post-dimension');
-    const hrBoards = document.getElementById('horizontal-board');
-    const fenceBoardsResult = document.getElementById('NoFenceBoards');
-    const postResult = document.getElementById('NoPosts');
-    const hrResult = document.getElementById('NoHrBoards');
-    const concreteResult = document.getElementById('NoConcreteBags');
-    const screwResult = document.getElementById('NoDeckScrews');
-    const totalCostResult = document.getElementById('totalFenceCost');
-    const fenceBoardsCost = document.getElementById('fenceBoardCost');
-    const postCost = document.getElementById('postCost');
-    const hrCost = document.getElementById('hrCost');
-    const concreteCost = document.getElementById('concreteCost');
-
-    const lengthFt = parseFloat(lengthInput.value);
+    const lengthFt = parseFloat(document.getElementById('length').value);
     const lengthIn = lengthFt * 12;
-    const postWidth = parseFloat(postDimensions.value);
+    const postWidth = parseFloat(document.getElementById('post-dimension').value);
 
     const noOfPosts =  Math.ceil(lengthFt/8) + 1;
     const noOfFenceBoards = Math.ceil((lengthIn - (noOfPosts*postWidth))/5.5)
-    const hrBoardsOption = parseFloat(hrBoards.value);
+    const hrBoardsOption = parseFloat(document.getElementById('horizontal-board').value);
     const noOfHrBoards = Math.ceil(lengthFt/8) * hrBoardsOption;
 
     const concrete = noOfPosts * 2;
 
     const screwCost = 50;
 
+    const fenceBoardsCost = document.getElementById('fenceBoardCost');
+    const postCost = document.getElementById('postCost');
+    const hrCost = document.getElementById('hrCost');
+    const concreteCost = document.getElementById('concreteCost');
+
     const totalCost = Math.ceil((noOfFenceBoards * parseFloat(fenceBoardsCost.value)) + (noOfPosts * parseFloat(postCost.value)) + (noOfHrBoards * parseFloat(hrCost.value)) + (concrete * parseFloat(concreteCost.value)) + screwCost);
+    const totalCostGST = totalCost + (totalCost * 0.05)
+    
+    const fenceBoardsResult = document.getElementById('NoFenceBoards');
+    const postResult = document.getElementById('NoPosts');
+    const hrResult = document.getElementById('NoHrBoards');
+    const concreteResult = document.getElementById('NoConcreteBags');
+    const totalCostResult = document.getElementById('totalFenceCost');
 
-    screwResult.textContent = `3-inch Deck Screws`
-    totalCostResult.textContent = `Total Cost: $${totalCost}`
-
-    const strongFenceBoard = document.createElement('strong');
-    strongFenceBoard.textContent = noOfFenceBoards;
-
-    fenceBoardsResult.textContent = 'Fence Boards: ';
-    fenceBoardsResult.appendChild(strongFenceBoard);
-
-    const strongPost = document.createElement('strong');
-    strongPost.textContent = noOfPosts;
-
-    postResult.textContent = 'Posts: ';
-    postResult.appendChild(strongPost);
-
-    const strongHrBoard = document.createElement('strong');
-    strongHrBoard.textContent = noOfHrBoards;
-
-    hrResult.textContent = 'Horizontal boards (2x4 or 2x6): ';
-    hrResult.appendChild(strongHrBoard);
-
-    const strongConcrete = document.createElement('strong');
-    strongConcrete.textContent = concrete;
-
-    concreteResult.textContent = 'Concrete Bags: ';
-    concreteResult.appendChild(strongConcrete);
-
+    totalCostResult.textContent = `Total Cost: $${totalCostGST}`
+    fenceBoardsResult.textContent = noOfFenceBoards;
+    postResult.textContent = noOfPosts;
+    hrResult.textContent = noOfHrBoards;
+    concreteResult.textContent = concrete;
 }
 
 const getShingleQuote = () => {
@@ -90,32 +86,14 @@ const getShingleQuote = () => {
     const starterCost = (starterKit == 33) ? 36.94 : 64.75;
 
     const totalShingleCost = Math.ceil((shingleCost * shingleBundlels) + (ridgeCost * ridgeBundles) + (underlaymentCost * underlaymentRolls) + (starterCost * starterBoxes));
+    const totalShingleCostGST = totalShingleCost + (totalShingleCost * 0.05);
 
-    const strongUnderlayment = document.createElement('strong');
-    strongUnderlayment.textContent = underlaymentRolls;
+    underlaymentResult.textContent = underlaymentRolls;
+    starterResult.textContent = starterBoxes;
+    shingleResult.textContent = shingleBundlels;
+    ridgeResult.textContent = ridgeBundles;
 
-    underlaymentResult.textContent = 'Underlayment Rolls: ';
-    underlaymentResult.appendChild(strongUnderlayment);
-
-    const strongStarter = document.createElement('strong');
-    strongStarter.textContent = starterBoxes;
-
-    starterResult.textContent = 'Starter Kit Bundles: '
-    starterResult.appendChild(strongStarter);
-
-    const strongShingle = document.createElement('strong');
-    strongShingle.textContent = shingleBundlels;
-
-    shingleResult.textContent = 'Shingle Bundles: '
-    shingleResult.appendChild(strongShingle);
-
-    const strongRidge = document.createElement('strong');
-    strongRidge.textContent = ridgeBundles;
-
-    ridgeResult.textContent = 'Ridge Cap Bundles: '
-    ridgeResult.appendChild(strongRidge);
-
-    totalShingleCostResult.textContent = `Total Cost: $${totalShingleCost}`
+    totalShingleCostResult.textContent = `Total Cost: $${totalShingleCostGST}`
 
 }
 
@@ -139,26 +117,6 @@ const showCalculator = (calculatorType) => {
 }
 
 showCalculator('fence')
-
-const postDimensionSelect = document.getElementById('post-dimension');
-const postCostInput = document.getElementById('postCost');
-
-// Define an object to store post costs based on dimensions (value)
-const postCosts = {
-  '3.5': 16.80, // Cost for 4x4 post
-  '5.5': 25.98, // Cost for 4x6 post
-};
-
-// Update post cost on selection change
-postDimensionSelect.addEventListener('change', () => {
-  const selectedDimension = postDimensionSelect.value;
-  const cost = postCosts[selectedDimension]; // Access cost based on selected value
-  postCostInput.value = cost.toFixed(2); // Set the input value with formatted price (2 decimal places)
-});
-
-// Set the initial cost based on the default selected value (optional)
-postCostInput.value = postCosts[postDimensionSelect.value].toFixed(2);
-
 
 const resetResult = () => {
     const result = document.getElementsByClassName('result-container');
