@@ -35,7 +35,7 @@
                     </div>
 
                     <div class="input">
-                        <label for="horizontal-board">2x4 horizonatal boards</label>
+                        <label for="horizontal-board">2x4 Railing</label>
                         <select name="horizontal-board" id="horizontal-board">
                             <option value="2">Top and Bottom</option>
                             <option value="3">Top, Center, and Bottom</option>
@@ -53,7 +53,7 @@
                     </div>
 
                     <div class="input">
-                        <label for="hrCost">2x4 or 2x6 Price $</label>
+                        <label for="hrCost">Railing Price $</label>
                         <input type="number" id="hrCost" min="0" step="1.00" value="7.65" required>
                     </div>
 
@@ -66,13 +66,16 @@
                     <button type="reset" onclick="resetResult()">Reset</button>
 
                 </form>
+
                 <div class="result-container hidden" id="fence-result">
                     <h2>Results</h2>
-                    <p class="result">Fence Boards: <strong id="NoFenceBoards"></strong></p>
-                    <p class="result">Posts: <strong id="NoPosts"></strong></p>
-                    <p class="result">Horizontal Boards (2x4 or 2x6): <strong id="NoHrBoards"></strong></p>
-                    <p class="result">Concrete Bags: <strong id="NoConcreteBags"></strong></p>
-                    <p class="result">3-inch Deck Screws</p>
+                    <p class="result"><strong id="NoFenceBoards"></strong> Fence Boards</p>
+                    <p class="result"><strong id="NoPosts"></strong> Posts</p>
+                    <p class="result"><strong id="NoHrBoards"></strong> Horizontal Rails (2x4)</p>
+                    <p class="result"><strong id="NoConcreteBags"></strong> Concrete Bags</p>
+                    <p class="result"><strong id="NoBrackets"></strong> Fence Brackets (2x4)</p>
+                    <p class="result"><strong id="NoBoardScrews"></strong> 6x1-5/8-inch Deck Screws</p>
+                    <p class="result"><strong id="NoPostScrews"></strong> 8x2-1/2-inch Deck Screws</p>
                     <p class="result" id="totalFenceCost"></p>
                 </div>
                 

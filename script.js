@@ -33,20 +33,36 @@ const getFenceQuote = () => {
 
     const concrete = noOfPosts * 2;
 
-    const screwCost = 50;
+    const noOfBrackets = noOfHrBoards * 2;
+    const noOfBoardScrews = noOfFenceBoards * 4;
+    const noOfPostScrews = noOfBrackets * 4;
+
+    const bracketCost = noOfBrackets * 0.38;
+    
+    const boardScrewPackSizes = [100, 500, 3000];
+    const boardScrewPackPrices = [10.94, 26.98, 79.97]; // Prices per pack
+    const boardScrewCost = calculateScrewsCost(noOfBoardScrews, boardScrewPackSizes, boardScrewPackPrices);
+
+    const postScrewPackSizes = [100, 350, 1200, 2500];
+    const postScrewPackPrices = [14.48, 29.93, 49.87, 89.97]; // Prices per pack
+    const postScrewCost = calculateScrewsCost(noOfPostScrews, postScrewPackSizes, postScrewPackPrices);
+    
 
     const fenceBoardsCost = document.getElementById('fenceBoardCost');
     const postCost = document.getElementById('postCost');
     const hrCost = document.getElementById('hrCost');
     const concreteCost = document.getElementById('concreteCost');
 
-    const totalCost = Math.ceil((noOfFenceBoards * parseFloat(fenceBoardsCost.value)) + (noOfPosts * parseFloat(postCost.value)) + (noOfHrBoards * parseFloat(hrCost.value)) + (concrete * parseFloat(concreteCost.value)) + screwCost);
+    const totalCost = Math.ceil((noOfFenceBoards * parseFloat(fenceBoardsCost.value)) + (noOfPosts * parseFloat(postCost.value)) + (noOfHrBoards * parseFloat(hrCost.value)) + (concrete * parseFloat(concreteCost.value)) + bracketCost + boardScrewCost + postScrewCost);
     const totalCostGST = totalCost + (totalCost * 0.05)
     
     const fenceBoardsResult = document.getElementById('NoFenceBoards');
     const postResult = document.getElementById('NoPosts');
     const hrResult = document.getElementById('NoHrBoards');
     const concreteResult = document.getElementById('NoConcreteBags');
+    const bracketResult = document.getElementById('NoBrackets');
+    const boardScrewResult = document.getElementById('NoBoardScrews');
+    const postScrewResult = document.getElementById('NoPostScrews');
     const totalCostResult = document.getElementById('totalFenceCost');
 
     totalCostResult.textContent = `Total Cost: $${totalCostGST}`
@@ -54,6 +70,38 @@ const getFenceQuote = () => {
     postResult.textContent = noOfPosts;
     hrResult.textContent = noOfHrBoards;
     concreteResult.textContent = concrete;
+    bracketResult.textContent = noOfBrackets;
+    boardScrewResult.textContent = noOfBoardScrews;
+    postScrewResult.textContent = noOfPostScrews;
+}
+
+function calculateScrewsCost(requiredScrews, packSizes, packPrices) {
+  // Sort pack sizes and prices together in descending order by pack size.
+  const sortedData = packSizes.map((size, index) => ({ size, price: packPrices[index] }))
+    .sort((a, b) => b.size - a.size);
+  const sortedPackSizes = sortedData.map(item => item.size);
+  const sortedPackPrices = sortedData.map(item => item.price);
+
+  let screwsRemaining = requiredScrews;
+  const boxes = {};
+  let totalCost = 0;
+  for (const packSize in sortedPackSizes) {
+    const price = sortedPackPrices[packSize];
+    // Calculate the number of boxes required for the current pack size.
+    const numBoxes = Math.floor(screwsRemaining / sortedPackSizes[packSize]);
+    boxes[sortedPackSizes[packSize]] = numBoxes;
+    screwsRemaining -= numBoxes * sortedPackSizes[packSize];
+
+    // Update total cost
+    totalCost += numBoxes * price;
+
+    // Exit loop if all screws are fulfilled.
+    if (screwsRemaining === 0) {
+      break;
+    }
+  }
+
+  return totalCost;
 }
 
 const getShingleQuote = () => {
