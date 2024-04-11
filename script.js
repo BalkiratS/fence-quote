@@ -34,7 +34,7 @@ const getFenceQuote = () => {
     const concrete = noOfPosts * 2;
 
     const noOfBrackets = noOfHrBoards * 2;
-    const noOfBoardScrews = noOfFenceBoards * 4;
+    const noOfBoardScrews = noOfFenceBoards * 6;
     const noOfPostScrews = noOfBrackets * 4;
 
     const bracketCost = noOfBrackets * 0.38;
@@ -43,8 +43,8 @@ const getFenceQuote = () => {
     const boardScrewPackPrices = [10.94, 26.98, 79.97]; // Prices per pack
     const boardScrewCost = calculateScrewsCost(noOfBoardScrews, boardScrewPackSizes, boardScrewPackPrices);
 
-    const postScrewPackSizes = [100, 350, 1200, 2500];
-    const postScrewPackPrices = [14.48, 29.93, 49.87, 89.97]; // Prices per pack
+    const postScrewPackSizes = [100, 250, 1000, 1500];
+    const postScrewPackPrices = [17.97, 29.97, 39.87, 66.97]; // Prices per pack
     const postScrewCost = calculateScrewsCost(noOfPostScrews, postScrewPackSizes, postScrewPackPrices);
     
 
