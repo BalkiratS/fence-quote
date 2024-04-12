@@ -78,6 +78,11 @@ button {
     margin-right: 20px;
 }
 
+button a{
+    color: white;
+    text-decoration: none;
+}
+
 button:hover {
     background-color: #45A049;
 }
