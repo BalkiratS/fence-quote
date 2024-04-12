@@ -33,9 +33,23 @@ const getFenceQuote = () => {
 
     const concrete = noOfPosts * 2;
 
-    const noOfBrackets = noOfHrBoards * 2;
-    const noOfBoardScrews = noOfFenceBoards * 6;
-    const noOfPostScrews = noOfBrackets * 4;
+    const needFenceBrackets = document.getElementById('fence-brackets').value;
+    const bracketsP = document.getElementById('bracketsP');
+
+    let noOfBrackets = 0;
+    let noOfBoardScrews = noOfFenceBoards * 6;
+    let noOfPostScrews = 0;
+
+    if (needFenceBrackets == 'yes'){
+      noOfBrackets = noOfHrBoards * 2;
+      noOfPostScrews = noOfBrackets * 2;
+      noOfBoardScrews += noOfBrackets * 2;
+      bracketsP.classList.remove('hidden');
+    }
+    else if (needFenceBrackets == 'no'){
+      noOfPostScrews = noOfHrBoards * 4;
+      bracketsP.classList.add('hidden');
+    }
 
     const bracketCost = noOfBrackets * 0.38;
     

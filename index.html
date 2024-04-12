@@ -43,6 +43,15 @@
                     </div>
 
                     <div class="input">
+                        <label for="fence-brackets">Fence Brackets</label>
+                        <select name="fence-brackets" id="fence-brackets">
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>
+                  
+
+                    <div class="input">
                         <label for="fenceBoardCost">Fence Board Price $</label>
                         <input type="number" id="fenceBoardCost" min="0" step="1.00" value="5.12" required>
                     </div>
@@ -73,7 +82,7 @@
                     <p class="result"><strong id="NoPosts"></strong> Posts</p>
                     <p class="result"><strong id="NoHrBoards"></strong> Horizontal Rails (2x4)</p>
                     <p class="result"><strong id="NoConcreteBags"></strong> Concrete Bags</p>
-                    <p class="result"><strong id="NoBrackets"></strong> Fence Brackets (2x4)</p>
+                    <p id="bracketsP" class="result"><strong id="NoBrackets"></strong> Fence Brackets (2x4)</p>
                     <p class="result"><strong id="NoBoardScrews"></strong> 6x1-5/8-inch Deck Screws</p>
                     <p class="result"><strong id="NoPostScrews"></strong> 8x3-inch Deck Screws</p>
                     <p class="result" id="totalFenceCost"></p>
